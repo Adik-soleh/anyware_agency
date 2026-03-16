@@ -14,13 +14,13 @@ export default function FeaturedWorks() {
   const featured = portfolioItems.slice(0, 3);
 
   return (
-    <section className="py-20 md:py-32 px-6 bg-white overflow-hidden">
+    <section id="portfolio" className="py-20 md:py-32 px-4 sm:px-6 bg-white overflow-hidden scroll-mt-24">
       <div className="max-w-6xl mx-auto">
-        <header className="mb-16 text-left">
-          <h2 className="text-4xl md:text-5xl font-black text-lt-dark mb-4 tracking-tighter">
+        <header className="mb-12 md:mb-16 text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-lt-dark mb-4 tracking-tighter break-words">
             Karya Terbaik
           </h2>
-          <p className="text-gray-500 text-lg max-w-xl">
+          <p className="text-gray-500 text-base md:text-lg max-w-xl">
             Beberapa proyek terbaik yang telah kami hasilkan bersama klien.
           </p>
         </header>

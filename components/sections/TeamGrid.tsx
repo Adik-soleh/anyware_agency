@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import { teamMembers } from '@/data/team';
 import { Instagram, Linkedin, Github, Facebook } from 'lucide-react';
+import Image from "next/image";
 
 export default function TeamGrid() {
   return (
-    <section className="py-20 md:py-32 px-6 bg-white">
+    <section id="about" className="py-20 md:py-32 px-4 sm:px-6 bg-white scroll-mt-24 overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         <motion.div
@@ -16,8 +17,8 @@ export default function TeamGrid() {
           className="mb-20"
         >
           <span className="text-xs font-black uppercase tracking-[0.3em] text-[#C6E23B] mb-4 block">Meet the Team</span>
-          <h2 className="text-5xl md:text-6xl font-black text-[#1E3932] tracking-tighter leading-none">
-            Orang hebat di balik <br /> ANYWARE_AGENCY
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-[#1E3932] tracking-tighter leading-[1.1] md:leading-none">
+            Orang hebat di balik <br /> Lunatic Foundry
           </h2>
         </motion.div>
 
@@ -34,9 +35,12 @@ export default function TeamGrid() {
               <div className="relative aspect-[4/5] rounded-[48px] bg-[#F3F3F1] overflow-hidden border-2 border-gray-100 transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)] group-hover:-translate-y-2">
 
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-200/50 to-gray-300/50 flex items-center justify-center">
-                  <span className="text-9xl font-black text-white/40 select-none">
-                    {member.name.charAt(0)}
-                  </span>
+                  <Image
+                  src={member.image || "/team/avatar.png"}
+                  alt={member.name.charAt(0)}
+                  fill
+                  className="object-cover"
+                />
                 </div>
 
                 <div className="absolute bottom-6 left-6 right-6">

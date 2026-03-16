@@ -12,10 +12,10 @@ export default function Testimonials() {
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-20 md:py-32 px-6 bg-[#1A56DB] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+    <section id="testimonials" className="py-20 md:py-32 px-4 sm:px-6 bg-[#1A56DB] relative overflow-hidden scroll-mt-24">
+      <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div className="relative h-[400px] md:h-[500px] flex items-center justify-center order-2 lg:order-1">
           <AnimatePresence mode="wait">
             <motion.div
@@ -66,7 +66,7 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-[#C6E23B] text-4xl md:text-6xl font-black leading-[0.9] tracking-tighter mb-8">
+            <h2 className="text-[#C6E23B] text-3xl sm:text-4xl md:text-6xl font-black leading-[1.1] md:leading-[0.9] tracking-tighter mb-8 italic">
               What our <br /> clients say
             </h2>
 

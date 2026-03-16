@@ -45,21 +45,22 @@ export default function Navbar() {
     <>
       <nav
         className={`
-          fixed top-4 left-1/2 -translate-x-1/2 z-50
+          fixed top-4 inset-x-4 md:left-1/2 md:-translate-x-1/2 z-50
           flex items-center justify-between
           rounded-full px-4 md:px-6 py-3
           transition-all duration-500
+          mx-auto
           ${scrolled
-            ? 'bg-white/95 backdrop-blur-xl shadow-lg w-[92%] max-w-4xl'
-            : 'bg-white/80 backdrop-blur-xl shadow-md w-[95%] max-w-5xl'
+            ? 'bg-white/95 backdrop-blur-xl shadow-lg w-auto md:w-[92%] md:max-w-4xl'
+            : 'bg-white/80 backdrop-blur-xl shadow-md w-auto md:w-[95%] md:max-w-5xl'
           }
         `}
       >
-        <Link href="/" className="flex items-center gap-2 font-extrabold text-xl text-lt-dark">
-          <span className="w-8 h-8 bg-lt-green rounded-full flex items-center justify-center text-white text-sm font-bold">
-            C
+        <Link href="/" className="flex items-center gap-2 font-extrabold text-lg sm:text-xl text-lt-dark shrink-0">
+          <span className="inline">Lunatic Foundry</span>
+          <span className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">
+            Lf
           </span>
-          <span className="hidden sm:inline">ANYWARE_AGENCY</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1">

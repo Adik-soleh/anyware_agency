@@ -20,7 +20,7 @@ const styleConfig = [
 
 export default function BentoGrid() {
   return (
-    <section className="py-20 md:py-28 px-6 bg-white">
+    <section id="services" className="py-20 md:py-28 px-4 sm:px-6 bg-white scroll-mt-24">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ export default function BentoGrid() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-lt-dark mb-4 tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-lt-dark mb-4 tracking-tighter">
             Layanan Kami
           </h2>
           <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto">

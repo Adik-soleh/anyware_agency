@@ -51,7 +51,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function StatsCounter() {
   return (
-    <section className="py-16 md:py-20 px-6 bg-white border-y border-gray-100">
+    <section id="stats" className="py-16 md:py-20 px-4 sm:px-6 bg-white border-y border-gray-100 scroll-mt-24">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}

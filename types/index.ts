@@ -24,7 +24,7 @@ export interface PortfolioItem {
 export interface TeamMember {
   name: string;
   role: string;
-  image: string;
+  image?: string;
   socials: {
     instagram?: string;
     linkedin?: string;

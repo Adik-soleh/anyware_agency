@@ -4,7 +4,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Rivaldi',
     role: 'CEO & Founder',
-    image: '/team/andi.jpg',
+    // image: '/team/rivaldi.png',
     socials: {
       instagram: '#',
       linkedin: '#',
@@ -14,7 +14,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Adi',
     role: 'Programer',
-    image: '/team/sari.jpg',
+    // image: '/team/adi.png',
     socials: {
       instagram: '#',
       linkedin: '#',
@@ -26,7 +26,7 @@ export const teamMembers: TeamMember[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    quote: 'Kerjasama yang luar biasa! Tim ANYWARE_AGENCY berhasil mengubah visi kami menjadi produk digital yang tidak hanya cantik, tapi juga fungsional dan disukai pengguna.',
+    quote: 'Kerjasama yang luar biasa! Tim Lunatic Foundry berhasil mengubah visi kami menjadi produk digital yang tidak hanya cantik, tapi juga fungsional dan disukai pengguna.',
     name: 'Reza Mahendra',
     role: 'CEO',
     company: 'TokoKu',
@@ -40,7 +40,7 @@ export const testimonials: Testimonial[] = [
     avatar: '/testimonials/diana.jpg',
   },
   {
-    quote: 'ANYWARE_AGENCY bukan hanya vendor, tapi partner strategis. Mereka benar-benar memahami bisnis kami dan memberikan solusi yang tepat sasaran.',
+    quote: 'Lunatic Foundry bukan hanya vendor, tapi partner strategis. Mereka benar-benar memahami bisnis kami dan memberikan solusi yang tepat sasaran.',
     name: 'Farhan Akbar',
     role: 'CTO',
     company: 'BayarIn',

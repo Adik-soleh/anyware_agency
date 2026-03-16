@@ -22,21 +22,21 @@ export default function Hero() {
             New Rated Agency 2026
           </div>
 
-          <h1 className="text-[52px] md:text-[75px] lg:text-[85px] font-black text-[#1E3932] leading-[0.95] tracking-tighter mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-[75px] lg:text-[85px] font-black text-[#1E3932] leading-[1.1] md:leading-[0.95] tracking-tighter mb-8">
             Digital solutions <br />
             <span className="text-white drop-shadow-sm">built for you.</span>
           </h1>
 
-          <p className="text-[#1E3932]/80 text-lg md:text-xl font-medium max-w-md mb-10 leading-relaxed">
+          <p className="text-[#1E3932]/80 text-base md:text-xl font-medium max-w-md mb-10 leading-relaxed">
             Membantu bisnis tumbuh lebih cepat dengan website modern dan sistem yang terintegrasi. Simple, cepat, dan berdampak.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md group">
             <div className="relative w-full">
-              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-[#1E3932]/40 font-bold">test@gmail.com</span>
               <input
                 type="text"
-                className="w-full pl-24 pr-4 py-5 rounded-[20px] bg-white shadow-sm focus:shadow-md transition-all outline-none text-[#1E3932] font-semibold"
+                placeholder="test@gmail.com"
+                className="w-full sm:pl-24 px-6 py-5 rounded-[20px] bg-white shadow-sm focus:shadow-md transition-all outline-none text-[#1E3932] font-semibold"
               />
             </div>
             <button className="w-full sm:w-auto bg-[#1E3932] text-white px-8 py-5 rounded-[20px] font-bold hover:bg-[#2d544a] hover:-translate-y-1 transition-all active:scale-95 shadow-lg shadow-[#1E3932]/20">

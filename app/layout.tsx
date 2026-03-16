@@ -12,8 +12,8 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "ANYWARE_AGENCY — Digital Agency Indonesia",
-    template: "%s | ANYWARE_AGENCY",
+    default: "Lunatic Foundry — Digital Agency Indonesia",
+    template: "%s | Lunatic Foundry",
   },
   description: "Digital Agency Indonesia penyedia jasa pembuatan website, mobile app, dan UI/UX design. Solusi teknologi modern untuk transformasi digital bisnis Anda.",
   keywords: [
@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     "pembuatan aplikasi mobile",
     "web development jakarta",
     "teknologi transformasi digital",
-    "anyware agency",
+    "Lunatic Foundry",
     "creative digital solution",
   ],
-  authors: [{ name: "ANYWARE_AGENCY" }],
-  creator: "ANYWARE_AGENCY",
-  publisher: "ANYWARE_AGENCY",
+  authors: [{ name: "Lunatic Foundry" }],
+  creator: "Lunatic Foundry",
+  publisher: "Lunatic Foundry",
   formatDetection: {
     email: false,
     address: false,
@@ -40,21 +40,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     url: "https://anywareagency.vercel.app/",
-    siteName: "ANYWARE_AGENCY",
-    title: "ANYWARE_AGENCY — Digital Agency Indonesia",
+    siteName: "Lunatic Foundry",
+    title: "Lunatic Foundry — Digital Agency Indonesia",
     description: "Solusi teknologi modern untuk mengubah ide brilian Anda menjadi produk digital luar biasa. Jasa web & mobile development terbaik.",
     images: [
       {
         url: "https://anywareagency.vercel.app/og-image.png", // Recommended size: 1200x630
         width: 1200,
         height: 630,
-        alt: "ANYWARE_AGENCY Digital Solutions",
+        alt: "Lunatic Foundry Digital Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ANYWARE_AGENCY — Digital Agency Indonesia",
+    title: "Lunatic Foundry — Digital Agency Indonesia",
     description: "Solusi teknologi modern untuk transformasi digital bisnis Anda. Web, Mobile, & UI/UX Design.",
     images: ["https://anywareagency.vercel.app/og-image.png"],
     creator: "@anywareagency",
@@ -93,7 +93,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "ANYWARE_AGENCY",
+              "name": "Lunatic Foundry",
               "url": "https://anywareagency.vercel.app/",
               "logo": "https://anywareagency.vercel.app/favicon.ico",
               "sameAs": [
