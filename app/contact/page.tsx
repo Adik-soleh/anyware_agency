@@ -54,7 +54,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-lt-dark text-sm">Telepon</p>
-                  <p className="text-gray-500 text-sm">+62 812-3456-7890</p>
+                  <p className="text-gray-500 text-sm">+62 *****</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -63,7 +63,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-lt-dark text-sm">Email</p>
-                  <p className="text-gray-500 text-sm">hello@compro.com</p>
+                  <p className="text-gray-500 text-sm">hello@LunaticFoundry.com</p>
                 </div>
               </div>
             </motion.div>

@@ -72,6 +72,10 @@ export default function Hero() {
               </div>
               <h3 className="text-white text-3xl font-black leading-tight mb-4">Clean Code, <br />Scalable Tech.</h3>
               <p className="text-white/60 font-mono text-sm">npm install future --save</p>
+              <p className="text-white/60 font-mono text-sm mt-3">SELECT *FROM finger
+              <br />
+               WHERE id = 3</p>
+
             </div>
           </motion.div>
 
