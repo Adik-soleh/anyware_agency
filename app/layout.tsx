@@ -73,6 +73,10 @@ export const metadata: Metadata = {
   verification: {
     google: "google-site-verification-token", // User should replace this with their actual token
   },
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
