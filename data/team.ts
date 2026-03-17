@@ -4,7 +4,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Rivaldi',
     role: 'CEO & Founder',
-    // image: '/team/rivaldi.png',
+    image: '/team/rivaldi.png',
     socials: {
       instagram: '#',
       linkedin: '#',
@@ -14,7 +14,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Adi',
     role: 'Programmer',
-    // image: '/team/adi.png',
+    image: '/team/adi.png',
     socials: {
       instagram: '#',
       linkedin: '#',

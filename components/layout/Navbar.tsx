@@ -58,9 +58,6 @@ export default function Navbar() {
       >
         <Link href="/" className="flex items-center gap-2 font-extrabold text-lg sm:text-xl text-lt-dark shrink-0">
           <span className="inline">Lunatic Foundry</span>
-          <span className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">
-            Lf
-          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1">
@@ -74,8 +71,8 @@ export default function Navbar() {
                   px-4 py-2 rounded-full text-sm font-semibold
                   transition-all duration-300
                   ${isActive
-                    ? 'bg-lt-green/10 text-lt-green'
-                    : 'text-gray-600 hover:bg-gray-100'
+                    ? 'bg-[#1E3932]/10 text-[#1E3932]'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                   }
                 `}
               >
@@ -126,8 +123,8 @@ export default function Navbar() {
                       block px-8 py-3 rounded-full text-lg font-semibold
                       transition-all duration-300
                       ${isActive
-                        ? 'bg-lt-green text-white'
-                        : 'bg-lt-pastel text-lt-dark hover:bg-lt-green/20'
+                        ? 'bg-[#1E3932] text-white'
+                        : 'bg-lt-pastel text-lt-dark hover:bg-[#1E3932]/10 hover:text-[#1E3932]'
                       }
                     `}
                   >

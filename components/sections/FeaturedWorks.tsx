@@ -18,10 +18,10 @@ export default function FeaturedWorks() {
       <div className="max-w-6xl mx-auto">
         <header className="mb-12 md:mb-16 text-left">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-lt-dark mb-4 tracking-tighter break-words">
-            Karya Terbaik
+            What We Can Build.
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-xl">
-            Beberapa proyek terbaik yang telah kami hasilkan bersama klien.
+            Beberapa proyek terbaik yang telah kami hasilkan.
           </p>
         </header>
 

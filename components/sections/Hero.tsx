@@ -1,9 +1,46 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+const heroVariants = [
+  'that converts.',
+  'that scales.',
+  'you deserve.',
+  'that performs.',
+  'that lasts.',
+  'worth sharing.',
+];
 
 export default function Hero() {
+  const [variantIndex, setVariantIndex] = useState(0);
+  const [typedText, setTypedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentText = heroVariants[variantIndex];
+
+    if (!isDeleting && typedText === currentText) {
+      const holdTimer = setTimeout(() => setIsDeleting(true), 1500);
+      return () => clearTimeout(holdTimer);
+    }
+
+    if (isDeleting && typedText === '') {
+      setIsDeleting(false);
+      setVariantIndex((prev) => (prev + 1) % heroVariants.length);
+      return;
+    }
+
+    const speed = isDeleting ? 45 : 80;
+    const nextText = isDeleting
+      ? currentText.slice(0, typedText.length - 1)
+      : currentText.slice(0, typedText.length + 1);
+
+    const typeTimer = setTimeout(() => setTypedText(nextText), speed);
+    return () => clearTimeout(typeTimer);
+  }, [typedText, isDeleting, variantIndex]);
+
   return (
     <section className="min-h-screen flex items-center px-6 md:px-16 pt-24 pb-16 bg-[#d2e823] relative overflow-hidden">
 
@@ -18,28 +55,31 @@ export default function Hero() {
           className="relative z-10"
         >
           <div className="inline-flex items-center gap-2 bg-[#1E3932]/10 text-[#1E3932] px-4 py-2 rounded-full text-sm font-bold mb-6">
-            <Star size={14} fill="currentColor" />
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M7 0.5V13.5M0.5 7H13.5M2.04 2.04L11.96 11.96M11.96 2.04L2.04 11.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
             Introducing Lunatic Foundry.
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-[75px] lg:text-[85px] font-black text-[#1E3932] leading-[1.1] md:leading-[0.95] tracking-tighter mb-8">
-            Digital solutions <br />
-            <span className="text-white drop-shadow-sm">built for you.</span>
+            <span className="whitespace-nowrap">We build websites</span> <br />
+            <span className="inline-block text-white">
+              <span aria-live="polite">{typedText}</span>
+              <span className="inline-block w-[0.08em] h-[0.9em] ml-1 bg-white align-[-0.08em] animate-pulse" aria-hidden="true" />
+            </span>
           </h1>
 
           <p className="text-[#1E3932]/80 text-base md:text-xl font-medium max-w-md mb-10 leading-relaxed">
             Your website, reimagined. Built for speed, designed for impact, engineered to grow with you.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md group">
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="yourname@gmail.com"
-                className="w-full sm:pl-24 px-6 py-5 rounded-[20px] bg-white shadow-sm focus:shadow-md transition-all outline-none text-[#1E3932] font-semibold"
-              />
-            </div>
-            <button className="w-full sm:w-auto bg-[#1E3932] text-white px-8 py-5 rounded-[20px] font-bold hover:bg-[#2d544a] hover:-translate-y-1 transition-all active:scale-95 shadow-lg shadow-[#1E3932]/20">
+          <div className="flex items-center gap-3 w-full max-w-md">
+            <input
+              type="text"
+              placeholder="yourname@gmail.com"
+              className="flex-1 px-6 py-4 rounded-2xl bg-white shadow-sm focus:shadow-md transition-all outline-none text-[#1E3932] font-semibold"
+            />
+            <button className="shrink-0 bg-[#1E3932] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#2d544a] hover:-translate-y-0.5 transition-all active:scale-95 shadow-lg shadow-[#1E3932]/20">
               Join Now
             </button>
           </div>
