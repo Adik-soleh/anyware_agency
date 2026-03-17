@@ -13,7 +13,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     name: 'Adi',
-    role: 'Programer',
+    role: 'Programmer',
     // image: '/team/adi.png',
     socials: {
       instagram: '#',
@@ -26,11 +26,11 @@ export const teamMembers: TeamMember[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    quote: 'Kerjasama yang luar biasa! Tim Lunatic Foundry berhasil mengubah visi kami menjadi produk digital yang tidak hanya cantik, tapi juga fungsional dan disukai pengguna.',
-    name: 'Reza Mahendra',
+    quote: 'Lunatic Foundry berdiri atas satu keyakinan sederhana: bisnis yang baik layak mendapatkan website yang setara.',
+    name: 'Rivaldi',
     role: 'CEO',
-    company: 'TokoKu',
-    avatar: '/testimonials/reza.jpg',
+    company: 'Lunatic Foundry',
+    avatar: '/testimonials/rivaldi.jpg',
   },
   {
     quote: 'Profesionalisme tinggi dan hasil yang melebihi ekspektasi. Aplikasi yang mereka buat membantu kami meningkatkan engagement pengguna hingga 200%.',
