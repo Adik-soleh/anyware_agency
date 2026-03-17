@@ -19,7 +19,7 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 bg-[#1E3932]/10 text-[#1E3932] px-4 py-2 rounded-full text-sm font-bold mb-6">
             <Star size={14} fill="currentColor" />
-            New Rated Agency 2026
+            Introducing Lunatic Foundry.
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-[75px] lg:text-[85px] font-black text-[#1E3932] leading-[1.1] md:leading-[0.95] tracking-tighter mb-8">
@@ -28,14 +28,14 @@ export default function Hero() {
           </h1>
 
           <p className="text-[#1E3932]/80 text-base md:text-xl font-medium max-w-md mb-10 leading-relaxed">
-            Membantu bisnis tumbuh lebih cepat dengan website modern dan sistem yang terintegrasi. Simple, cepat, dan berdampak.
+            Your website, reimagined. Built for speed, designed for impact, engineered to grow with you.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md group">
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="test@gmail.com"
+                placeholder="yourname@gmail.com"
                 className="w-full sm:pl-24 px-6 py-5 rounded-[20px] bg-white shadow-sm focus:shadow-md transition-all outline-none text-[#1E3932] font-semibold"
               />
             </div>

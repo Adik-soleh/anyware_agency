@@ -70,7 +70,7 @@ export default function Footer() {
 
         <div className="mt-12 text-center">
           <p className="text-white/50 text-xs font-medium max-w-2xl mx-auto leading-relaxed">
-            © 2026 Lunatic Foundry DIGITAL AGENCY. We acknowledge the Traditional Custodians of the land on which our studio stands. Made with passion in Indonesia.
+            © 2026 Lunatic Foundry. We acknowledge the Traditional Custodians of the land on which our studio stands. Made with passion in Indonesia.
           </p>
         </div>
       </div>
