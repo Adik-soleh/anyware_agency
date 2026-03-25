@@ -7,6 +7,7 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { portfolioItems } from '@/data/portfolio';
 import { ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
 
 export default function PortfolioDetailPage() {
   const params = useParams();
@@ -38,9 +39,14 @@ export default function PortfolioDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <div className="rounded-[2rem] overflow-hidden mb-8 aspect-[16/9] bg-gradient-to-br from-lt-pastel to-gray-200 flex items-center justify-center">
-              <span className="text-9xl font-extrabold text-gray-300/30">{item.title.charAt(0)}</span>
-            </div>
+            <div className="rounded-[2rem] overflow-hidden mb-8 aspect-[16/9] relative bg-gradient-to-br from-lt-pastel to-gray-200">
+            <Image
+              src={item?.image}
+              alt={item?.title}
+              fill
+              className="object-cover"
+            />
+          </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-lt-dark mb-4">
               {item.title}
@@ -68,13 +74,18 @@ export default function PortfolioDetailPage() {
 
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-lt-dark mb-6">Galeri</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {item.gallery.map((_, i) => (
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {item.gallery.map((img, i) => (
                   <div
                     key={i}
-                    className="rounded-[1.5rem] aspect-[4/3] bg-gradient-to-br from-lt-pastel to-gray-200 flex items-center justify-center"
+                    className="rounded-[1.5rem] aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-lt-pastel to-gray-200"
                   >
-                    <span className="text-4xl font-extrabold text-gray-300/40">{i + 1}</span>
+                    <Image
+                      src={img}
+                      alt={`gallery-${i}`}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 ))}
               </div>

@@ -2,11 +2,11 @@ import { PortfolioItem } from '@/types';
 
 export const portfolioItems: PortfolioItem[] = [
   {
-    slug: 'ecommerce-tokoku',
-    title: 'TokoKu E-Commerce',
+    slug: 'kost_management',
+    title: 'Managemet Kost',
     category: 'web',
     description: 'Platform e-commerce modern dengan fitur lengkap untuk UMKM Indonesia. Mendukung multi-vendor, pembayaran digital, dan logistik terintegrasi.',
-    image: '/portfolio/tokoku.jpg',
+    image: '/portofolio/management_kost/mkw_dasboard.png',
     tags: ['Next.js', 'E-Commerce', 'Full-stack'],
     challenge: 'Klien membutuhkan platform e-commerce yang mampu menangani ribuan transaksi per hari dengan pengalaman user yang seamless di mobile dan desktop.',
     solution: 'Kami membangun platform menggunakan Next.js dengan server-side rendering untuk SEO optimal, integrasi payment gateway Midtrans, dan real-time inventory management.',
@@ -15,14 +15,14 @@ export const portfolioItems: PortfolioItem[] = [
       { label: 'Load Time', value: '<1.2s' },
       { label: 'Uptime', value: '99.9%' },
     ],
-    gallery: ['/portfolio/tokoku-1.jpg', '/portfolio/tokoku-2.jpg', '/portfolio/tokoku-3.jpg'],
+    gallery: ['/portofolio/management_kost/mkw_dasboard.png', '/portofolio/management_kost/mkw_notif.png', '/portofolio/management_kost/mkw_pymnt.png'],
   },
   {
-    slug: 'fitness-app-gerakin',
-    title: 'GerakIn Fitness App',
+    slug: 'kost_management_mobile',
+    title: 'Managemet Kost (Penghuni)',
     category: 'mobile',
     description: 'Aplikasi fitness tracking dengan AI-powered workout recommendations dan social features untuk komunitas olahraga.',
-    image: '/portfolio/gerakin.jpg',
+    image: '/portofolio/management_kost/mkm_1.png',
     tags: ['React Native', 'AI', 'Mobile'],
     challenge: 'Membuat aplikasi fitness yang personal dan engaging dengan kemampuan tracking aktivitas real-time dan rekomendasi workout berbasis AI.',
     solution: 'Dibangun dengan React Native untuk cross-platform, TensorFlow Lite untuk on-device AI inference, dan Firebase untuk real-time sync dan social features.',
@@ -31,7 +31,7 @@ export const portfolioItems: PortfolioItem[] = [
       { label: 'Rating', value: '4.8★' },
       { label: 'Retensi 30 Hari', value: '68%' },
     ],
-    gallery: ['/portfolio/gerakin-1.jpg', '/portfolio/gerakin-2.jpg', '/portfolio/gerakin-3.jpg'],
+    gallery: ['/portofolio/management_kost/mkm_2.png', '/portofolio/management_kost/mkm_3.png', '/portofolio/management_kost/mkm_4.png'],
   },
   {
     slug: 'branding-sekolahku',
