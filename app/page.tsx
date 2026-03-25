@@ -11,11 +11,13 @@ export default function HomePage() {
   return (
     <>
       <Hero mediaMode={heroMediaMode} videoSrc="/hero/hero-showreel.mp4" videoPoster="/hero/fallbackHero1.jpeg" />
-      <LogoWall />
-      <BentoGrid />
-      <FeaturedWorks />
-      <StatsCounter />
-      <Testimonials />
+      <div className="relative z-10 bg-white">
+        <LogoWall />
+        <BentoGrid />
+        <FeaturedWorks />
+        <StatsCounter />
+        <Testimonials />
+      </div>
     </>
   );
 }

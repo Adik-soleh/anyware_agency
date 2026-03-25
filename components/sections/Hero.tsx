@@ -57,7 +57,7 @@ export default function Hero({
 
   return (
     <section
-      className={`min-h-screen flex items-center px-4 sm:px-6 md:px-16 pt-24 pb-16 relative overflow-hidden ${
+      className={`min-h-screen flex items-center px-4 sm:px-6 md:px-16 pt-24 pb-16 sticky top-0 overflow-hidden ${
         isVideoBackground ? 'bg-[#10231e]' : 'bg-[#d2e823]'
       }`}
     >
