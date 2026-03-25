@@ -10,7 +10,7 @@ const heroMediaMode: 'cards' | 'video' = 'video';
 export default function HomePage() {
   return (
     <>
-      <Hero mediaMode={heroMediaMode} videoSrc="/hero/hero-showreel.mp4" videoPoster="/og-image.png" />
+      <Hero mediaMode={heroMediaMode} videoSrc="/hero/hero-showreel.mp4" videoPoster="/hero/fallbackHero1.jpeg" />
       <LogoWall />
       <BentoGrid />
       <FeaturedWorks />
