@@ -1,96 +1,220 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import ContactForm from '@/components/sections/ContactForm';
-import SocialLinks from '@/components/sections/SocialLinks';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Linkedin, Github, Twitter, Send } from 'lucide-react';
+import { useState } from 'react';
+
+const contactInfo = [
+  { Icon: MapPin, label: 'Location',  value: 'Tangerang Selatan, Indonesia 🇮🇩' },
+  { Icon: Phone,  label: 'WhatsApp',  value: '+62 851-5528-4634' },
+  { Icon: Mail,   label: 'Email',     value: 'rivaldi1603@outlook.com' },
+];
+
+const socials = [
+  { Icon: Instagram, label: 'Instagram', href: '#' },
+  { Icon: Twitter,   label: 'Twitter',   href: '#' },
+  { Icon: Linkedin,  label: 'LinkedIn',  href: '#' },
+  { Icon: Github,    label: 'GitHub',    href: '#' },
+];
+
+function ContactForm() {
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const fd = new FormData(e.currentTarget);
+    const name    = String(fd.get('name')    || '').trim();
+    const email   = String(fd.get('email')   || '').trim();
+    const subject = String(fd.get('subject') || '').trim();
+    const message = String(fd.get('message') || '').trim();
+    const text = [
+      'Halo Lunatic Foundry, saya ingin konsultasi.',
+      '',
+      `Nama: ${name}`,
+      `Email: ${email}`,
+      `Subjek: ${subject}`,
+      `Pesan: ${message}`,
+    ].join('\n');
+    setTimeout(() => {
+      window.open(`https://wa.me/6285155284634?text=${encodeURIComponent(text)}`, '_blank');
+      setLoading(false);
+      setSubmitted(true);
+    }, 600);
+  };
+
+  const fieldBase = "w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 font-body text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#C6E23B]/60 focus:bg-white/8 transition-all duration-200";
+
+  if (submitted) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="h-full flex flex-col items-center justify-center text-center py-16 px-8"
+      >
+        <div className="w-16 h-16 rounded-full bg-[#C6E23B]/15 flex items-center justify-center mb-6">
+          <Send size={28} className="text-[#C6E23B]" />
+        </div>
+        <h3 className="font-heading text-2xl font-bold text-white mb-3">Pesan Terkirim!</h3>
+        <p className="font-body text-white/50 text-sm">Kami akan menghubungi Anda dalam 24 jam.</p>
+        <button
+          onClick={() => setSubmitted(false)}
+          className="mt-8 text-xs font-body text-white/30 hover:text-white/60 transition-colors"
+        >
+          Kirim pesan lain →
+        </button>
+      </motion.div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-1.5">
+          <label className="font-body text-[11px] font-bold uppercase tracking-wider text-white/35">Nama</label>
+          <input name="name" required placeholder="Nama lengkap" className={fieldBase} />
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <label className="font-body text-[11px] font-bold uppercase tracking-wider text-white/35">Email</label>
+          <input name="email" type="email" required placeholder="email@example.com" className={fieldBase} />
+        </div>
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <label className="font-body text-[11px] font-bold uppercase tracking-wider text-white/35">Subjek</label>
+        <input name="subject" required placeholder="Apa yang bisa kami bantu?" className={fieldBase} />
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <label className="font-body text-[11px] font-bold uppercase tracking-wider text-white/35">Pesan</label>
+        <textarea
+          name="message"
+          required
+          rows={5}
+          placeholder="Ceritakan tentang proyek Anda..."
+          className={`${fieldBase} resize-none`}
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={loading}
+        className="inline-flex items-center justify-center gap-2.5 bg-[#C6E23B] text-[#080E0C] rounded-full px-8 py-4 font-heading font-bold text-base hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(198,226,59,0.35)] active:scale-95 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {loading ? (
+          <>
+            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            Mengirim...
+          </>
+        ) : (
+          <>
+            <Send size={16} /> Kirim Pesan via WhatsApp
+          </>
+        )}
+      </button>
+    </form>
+  );
+}
 
 export default function ContactPage() {
   return (
-    <div className="pt-24">
-      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-lt-pastel to-white">
-        <div className="max-w-4xl mx-auto text-center">
+    <div className="bg-[#080E0C] min-h-screen">
+
+      {/* ══ Single dark page — no section breaks needed ══ */}
+      <div className="relative pt-40 pb-32 px-6 overflow-hidden">
+        {/* Glows */}
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#1E3932]/50 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/3 left-1/4 w-[300px] h-[300px] bg-[#C6E23B]/6 rounded-full blur-[80px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-6xl mx-auto">
+
+          {/* ── Heading ── */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-16"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-lt-dark mb-6">
-              Hubungi Kami
+            <span className="inline-block text-xs font-body font-bold uppercase tracking-[0.22em] text-white/30 mb-6">
+              Get in Touch
+            </span>
+            <h1 className="font-heading text-[clamp(3rem,7vw,6.5rem)] font-extrabold text-white leading-[1] tracking-tighter mb-6">
+              Let&apos;s build<br />
+              <span className="text-[#C6E23B]">something great.</span>
             </h1>
-            <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-              Mari bicara tentang proyek Anda. Kami siap membantu mewujudkan ide brilian Anda.
+            <p className="font-body text-white/50 text-lg max-w-md leading-relaxed">
+              Satu percakapan adalah semua yang diperlukan. Ceritakan apa yang sedang Anda bangun.
             </p>
           </motion.div>
-        </div>
-      </section>
 
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-3">
-            <ContactForm />
-          </div>
+          {/* ── 2-column layout ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-6">
 
-          <div className="lg:col-span-2 space-y-8">
+            {/* Left: info card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-lt-pastel rounded-[2rem] p-6 md:p-8 space-y-5"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-[#111714] border border-white/6 rounded-card3 p-8 md:p-10 flex flex-col gap-8"
             >
-              <h3 className="text-lg font-bold text-lt-dark mb-4">Informasi Kontak</h3>
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                  <MapPin size={18} className="text-lt-green" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lt-dark text-sm">Alamat</p>
-                  <p className="text-gray-500 text-sm">Tangerang Selatan</p>
+              <div>
+                <h2 className="font-heading text-xl font-bold text-white mb-1">Informasi Kontak</h2>
+                <p className="font-body text-sm text-white/40">Kami merespons dalam waktu 24 jam.</p>
+              </div>
+
+              <div className="flex flex-col gap-5">
+                {contactInfo.map(({ Icon, label, value }) => (
+                  <div key={label} className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/8 flex items-center justify-center shrink-0">
+                      <Icon size={16} className="text-[#C6E23B]" />
+                    </div>
+                    <div>
+                      <p className="font-body text-[10px] font-bold uppercase tracking-widest text-white/30 mb-0.5">{label}</p>
+                      <p className="font-body text-sm text-white/75">{value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-6 border-t border-white/6">
+                <p className="font-body text-[10px] font-bold uppercase tracking-widest text-white/30 mb-4">Temukan Kami</p>
+                <div className="flex gap-2">
+                  {socials.map(({ Icon, label, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      aria-label={label}
+                      className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-white/30 hover:text-white hover:bg-white/5 transition-all"
+                    >
+                      <Icon size={15} />
+                    </a>
+                  ))}
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                  <Phone size={18} className="text-lt-green" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lt-dark text-sm">Telepon</p>
-                  <p className="text-gray-500 text-sm">+62 851-5528-4634</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                  <Mail size={18} className="text-lt-green" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lt-dark text-sm">Email</p>
-                  <p className="text-gray-500 text-sm">rivaldi1603@outlook.com</p>
-                </div>
+
+              {/* Response time badge */}
+              <div className="mt-auto flex items-center gap-2 bg-[#1E3932]/50 border border-[#C6E23B]/15 rounded-2xl px-4 py-3">
+                <span className="w-2 h-2 rounded-full bg-[#C6E23B] animate-pulse" />
+                <span className="font-body text-xs text-white/60">Biasanya kami merespons dalam <strong className="text-white">1–4 jam</strong></span>
               </div>
             </motion.div>
 
+            {/* Right: form */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-[#111714] border border-white/6 rounded-card3 p-8 md:p-10"
             >
-              <SocialLinks />
+              <h2 className="font-heading text-xl font-bold text-white mb-1">Kirim Pesan</h2>
+              <p className="font-body text-sm text-white/40 mb-8">Isi form berikut dan kami akan membalas via WhatsApp.</p>
+              <ContactForm />
             </motion.div>
-          </div>
-        </div>
-      </section>
 
-      <section className="px-6 pb-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="rounded-[2rem] overflow-hidden h-[300px] md:h-[400px] bg-lt-pastel flex items-center justify-center">
-            <div className="text-center">
-              <MapPin size={48} className="text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-400 font-semibold">Google Maps Embed</p>
-              <p className="text-gray-300 text-sm">Jakarta Selatan, Indonesia</p>
-            </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

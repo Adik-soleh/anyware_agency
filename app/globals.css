@@ -2,43 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ══════════════════════════════════════════════════════════
+   DESIGN SYSTEM — Lunatic Foundry
+   Font: Syne (headings) + DM Sans (body)
+   Palette: Ink · Forest · Lime · Chalk · Violet
+   ══════════════════════════════════════════════════════════ */
+
+/* ─── CSS Variables ─────────────────────────────────────── */
+:root {
+  --ink:    #080E0C;
+  --forest: #1E3932;
+  --lime:   #C6E23B;
+  --chalk:  #F8F9F4;
+  --fog:    #EEF0E9;
+  --violet: #5022ED;
+  --mist:   #E4E8DD;
+  --stone:  #6B7471;
+  --cream:  #FAFAF8;
+
+  --radius-card:  24px;
+  --radius-card2: 32px;
+  --radius-card3: 40px;
+
+  --shadow-card:      0 2px 16px rgba(8,14,12,0.07), 0 1px 4px rgba(8,14,12,0.04);
+  --shadow-card-hover:0 8px 40px rgba(8,14,12,0.12), 0 2px 8px rgba(8,14,12,0.06);
+  --shadow-lime:      0 8px 32px rgba(198,226,59,0.25);
+  --shadow-violet:    0 8px 32px rgba(80,34,237,0.25);
 }
 
+/* ─── Base Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
 body {
-  background: #ffffff;
-  color: #171717;
+  background: var(--cream);
+  color: var(--ink);
   overflow-x: hidden;
 }
 
-html {
-  scroll-behavior: smooth;
+/* ─── Typography System ──────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #F3F4F6;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+body, p, li, span, a {
+  font-family: var(--font-dm), system-ui, sans-serif;
 }
 
-/* ─── Seamless Infinite Marquee (4-copy single-track) ────────────────────────
-   Satu flex-row berisi 4 salinan identik tech list.
-   Keyframe: translateX(0) → translateX(-25%)  = persis satu set geser keluar.
-   Karena copy ke-2 identik dengan copy ke-1, visual tidak berubah = zero glitch.
-   GPU-accelerated via will-change: transform.
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--chalk); }
+::-webkit-scrollbar-thumb { background: var(--mist); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--stone); }
 
+/* ─── Utility: font-heading override ────────────────────── */
+.font-heading { font-family: var(--font-syne), system-ui, sans-serif; }
+.font-body    { font-family: var(--font-dm), system-ui, sans-serif; }
+
+/* ─── Seamless Infinite Marquee (4-copy single-track) ───── */
 .marquee-viewport {
   overflow: hidden;
   width: 100%;
@@ -47,7 +72,7 @@ html {
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: 1rem;          /* 16px — sama dengan gap-4 tailwind */
+  gap: 1rem;
   padding: 1rem 0;
   width: max-content;
   will-change: transform;
@@ -59,6 +84,21 @@ html {
   100% { transform: translateX(-25%); }
 }
 
+/* ─── Micro-interactions ─────────────────────────────────── */
 .bouncy {
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Gradient text utility ──────────────────────────────── */
+.text-gradient-lime {
+  background: linear-gradient(135deg, var(--lime) 0%, #a8c62a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Section divider ────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--mist), transparent);
 }

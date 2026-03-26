@@ -1,88 +1,118 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { services } from '@/data/services';
 import { Palette, Smartphone, Globe, Lightbulb, ArrowUpRight } from 'lucide-react';
 
-const iconMap: Record<string, React.ElementType> = {
-  Palette,
-  Smartphone,
-  Globe,
-  Lightbulb,
-};
+const iconMap: Record<string, React.ElementType> = { Palette, Smartphone, Globe, Lightbulb };
 
-const styleConfig = [
-  { bg: 'bg-[#E9C3E6]', text: 'text-[#2D2D2D]', glow: 'hover:shadow-[0_0_40px_rgba(233,195,230,0.6)]' }, // Pink
-  { bg: 'bg-[#C6E23B]', text: 'text-[#2D2D2D]', glow: 'hover:shadow-[0_0_40px_rgba(198,226,59,0.6)]' }, // Lime
-  { bg: 'bg-[#001489]', text: 'text-white', glow: 'hover:shadow-[0_0_50px_rgba(0,20,137,0.5)]' },     // Blue
+// Ordered for maximum figure-ground contrast per row:
+// Row 1: Forest (dark) ↔ Chalk (light)
+// Row 2: Lime (bright) ↔ Ink (dark)
+const palette = [
+  { bg: '#1E3932', border: 'transparent', icon: '#C6E23B', iconBg: 'rgba(198,226,59,0.15)', text: '#FAFAF8', sub: 'rgba(250,250,248,0.6)', arrow: '#C6E23B' },
+  { bg: '#F8F9F4', border: '#D8DDD5', icon: '#1E3932', iconBg: '#E4E8DD', text: '#080E0C', sub: '#6B7471', arrow: '#1E3932' },
+  { bg: '#C6E23B', border: 'transparent', icon: '#1E3932', iconBg: 'rgba(30,57,50,0.12)', text: '#080E0C', sub: 'rgba(8,14,12,0.6)', arrow: '#1E3932' },
+  { bg: '#080E0C', border: 'transparent', icon: '#C6E23B', iconBg: 'rgba(198,226,59,0.12)', text: '#FAFAF8', sub: 'rgba(250,250,248,0.5)', arrow: '#C6E23B' },
 ];
+
+const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export default function BentoGrid() {
   return (
-    <section id="services" className="py-20 md:py-28 px-4 sm:px-6 bg-white scroll-mt-24">
+    <section id="services" className="py-24 md:py-32 px-6 bg-[#FAFAF8] scroll-mt-24">
       <div className="max-w-6xl mx-auto">
+
+        {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-lt-dark mb-4 tracking-tighter">
-            Layanan Kami
-          </h2>
-          <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto">
-            Solusi digital menyeluruh untuk kebutuhan bisnis Anda
+          <div>
+            <span className="inline-block text-xs font-body font-bold uppercase tracking-[0.2em] text-[#6B7471] mb-4">
+              What We Do
+            </span>
+            <h2 className="font-heading text-4xl sm:text-5xl font-extrabold text-[#080E0C] tracking-tighter leading-[1]">
+              Our Services.
+            </h2>
+          </div>
+          <p className="font-body text-[#6B7471] text-base md:text-lg max-w-sm leading-relaxed">
+            End-to-end digital solutions — from strategy to shipping.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* ── Grid ── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+        >
           {services.map((service, i) => {
-            const Icon = iconMap[service.icon] || Globe;
-            const style = styleConfig[i % 3];
-
+            const Icon  = iconMap[service.icon] || Globe;
+            const c     = palette[i % palette.length];
             return (
               <motion.div
                 key={service.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -10 }}
+                variants={cardVariants}
                 className="h-full"
+                whileHover={{ y: -6, transition: { type: 'spring', stiffness: 300, damping: 22 } }}
               >
-                <Link href={`/services/${service.slug}`} className="block h-full">
+                <Link href={`/services/${service.slug}`} className="group block h-full">
                   <div
-                    className={`h-full p-8 md:p-10 rounded-[40px] transition-all duration-500 group relative overflow-hidden ${style.bg} ${style.glow}`}
+                    className="h-full p-8 md:p-10 rounded-card3 transition-shadow duration-300 hover:shadow-card-hover relative overflow-hidden"
+                    style={{ backgroundColor: c.bg, border: `1px solid ${c.border}` }}
                   >
-                    {style.text === 'text-white' && (
-                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-all duration-500" />
-                    )}
+                    {/* Icon */}
+                    <div
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-8"
+                      style={{ backgroundColor: c.iconBg }}
+                    >
+                      <Icon size={22} style={{ color: c.icon }} />
+                    </div>
 
-                    <div className="flex flex-col h-full relative z-10">
-                      <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-6">
-                        <Icon size={28} className={style.text} />
-                      </div>
+                    {/* Text */}
+                    <h3
+                      className="font-heading text-2xl md:text-3xl font-bold mb-3 tracking-tight"
+                      style={{ color: c.text }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p
+                      className="font-body text-sm md:text-base leading-relaxed mb-8"
+                      style={{ color: c.sub }}
+                    >
+                      {service.description}
+                    </p>
 
-                      <h3 className={`text-2xl md:text-3xl font-black mb-4 tracking-tight ${style.text}`}>
-                        {service.title}
-                      </h3>
-
-                      <p className={`text-sm md:text-base font-medium opacity-80 leading-relaxed mb-8 flex-grow ${style.text}`}>
-                        {service.description}
-                      </p>
-
-                      <div className={`flex items-center gap-2 font-bold text-sm transition-all ${style.text}`}>
-                        Lihat Detail
-                        <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </div>
+                    {/* Arrow CTA */}
+                    <div
+                      className="inline-flex items-center gap-2 text-sm font-body font-semibold"
+                      style={{ color: c.arrow }}
+                    >
+                      Learn more
+                      <ArrowUpRight
+                        size={16}
+                        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
+                      />
                     </div>
                   </div>
                 </Link>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

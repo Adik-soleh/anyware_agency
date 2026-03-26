@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,49 +8,35 @@ import { Menu, X } from 'lucide-react';
 import { NavItem } from '@/types';
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
+  { label: 'Home',      href: '/' },
+  { label: 'About',     href: '/about' },
+  { label: 'Services',  href: '/services' },
   { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact',   href: '/contact' },
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isOpen,     setIsOpen]     = useState(false);
+  const [scrolled,   setScrolled]   = useState(false);
+  const [isVisible,  setIsVisible]  = useState(true);
   const pathname = usePathname();
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 20);
-
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-
-      lastScrollY = currentScrollY;
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      setIsVisible(y <= lastY || y < 80);
+      lastY = y;
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+  useEffect(() => { setIsOpen(false); }, [pathname]);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
@@ -58,35 +44,41 @@ export default function Navbar() {
     <>
       <nav
         className={`
-          fixed top-4 inset-x-4 md:left-1/2 md:-translate-x-1/2 z-50
+          fixed top-4 left-1/2 -translate-x-1/2 z-50
           flex items-center justify-between
-          rounded-full px-4 md:px-6 py-3
-          transition-all duration-500
-          mx-auto
-          ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-[150%] opacity-0 pointer-events-none'}
+          rounded-full px-4 py-2.5
+          transition-all duration-400 w-[calc(100%-2rem)] max-w-3xl
+          ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-[calc(100%+1rem)] opacity-0 pointer-events-none'}
           ${scrolled
-            ? 'bg-white/95 backdrop-blur-xl shadow-lg w-auto md:w-[92%] md:max-w-4xl'
-            : 'bg-white/80 backdrop-blur-xl shadow-md w-auto md:w-[95%] md:max-w-5xl'
+            ? 'bg-[#080E0C]/95 backdrop-blur-xl shadow-[0_4px_32px_rgba(0,0,0,0.35)] border border-white/10'
+            : 'bg-[#080E0C]/70 backdrop-blur-md border border-white/8'
           }
         `}
       >
-        <Link href="/" className="flex items-center gap-2 font-extrabold text-lg sm:text-xl text-lt-dark shrink-0">
-          <span className="inline">Lunatic Foundry</span>
+        {/* Logo */}
+        <Link
+          href="/"
+          className="font-heading font-bold text-[15px] text-white hover:text-[#C6E23B] transition-colors shrink-0 mr-2"
+        >
+          Lunatic Foundry
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        {/* Separator */}
+        <div className="hidden md:block w-px h-5 bg-white/10 mx-1 shrink-0" />
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-0.5 flex-1 ml-1">
           {navItems.map((item) => {
-            const isActive = pathname === item.href;
+            const active = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`
-                  px-4 py-2 rounded-full text-sm font-semibold
-                  transition-all duration-300
-                  ${isActive
-                    ? 'bg-[#1E3932]/10 text-[#1E3932]'
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                  px-3.5 py-1.5 rounded-full text-[13px] font-body font-medium transition-all duration-200 whitespace-nowrap
+                  ${active
+                    ? 'bg-white/12 text-white'
+                    : 'text-white/55 hover:text-white hover:bg-white/6'
                   }
                 `}
               >
@@ -96,49 +88,50 @@ export default function Navbar() {
           })}
         </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={22} strokeWidth={2.5} /> : <Menu size={22} strokeWidth={2.5} />}
-        </button>
+        {/* CTA + mobile toggle */}
+        <div className="flex items-center gap-2 ml-2">
+          <Link
+            href="/contact"
+            className="hidden md:inline-flex items-center whitespace-nowrap bg-[#C6E23B] text-[#080E0C] px-4 py-[7px] rounded-full font-body font-bold text-[13px] hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(198,226,59,0.4)] transition-all duration-200 active:scale-95"
+          >
+            Get in touch
+          </Link>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-full text-white/70 hover:bg-white/8 hover:text-white transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={18} strokeWidth={2.5} /> : <Menu size={18} strokeWidth={2.5} />}
+          </button>
+        </div>
       </nav>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-4"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-[#080E0C] flex flex-col px-6 pt-24 pb-12 gap-2"
           >
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
-              aria-label="Close menu"
-            >
-              <X size={24} strokeWidth={2.5} />
-            </button>
             {navItems.map((item, i) => {
-              const isActive = pathname === item.href;
+              const active = pathname === item.href;
               return (
                 <motion.div
                   key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08, duration: 0.3 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.07, duration: 0.3 }}
                 >
                   <Link
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
                     className={`
-                      block px-8 py-3 rounded-full text-lg font-semibold
-                      transition-all duration-300
-                      ${isActive
-                        ? 'bg-[#1E3932] text-white'
-                        : 'bg-lt-pastel text-lt-dark hover:bg-[#1E3932]/10 hover:text-[#1E3932]'
+                      block px-6 py-4 rounded-2xl font-heading text-2xl font-bold transition-all
+                      ${active
+                        ? 'bg-[#1E3932] text-[#C6E23B]'
+                        : 'text-white/70 hover:bg-white/5 hover:text-white'
                       }
                     `}
                   >
@@ -147,6 +140,14 @@ export default function Navbar() {
                 </motion.div>
               );
             })}
+            <div className="mt-auto">
+              <Link
+                href="/contact"
+                className="block w-full text-center bg-[#C6E23B] text-[#080E0C] px-6 py-4 rounded-2xl font-heading font-bold text-lg"
+              >
+                Get in touch
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

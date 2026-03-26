@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const jakarta = Plus_Jakarta_Sans({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-jakarta",
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-syne",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -86,7 +94,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" data-scroll-behavior="smooth">
-      <body className={`${jakarta.variable} font-sans antialiased`}>
+      <body className={`${syne.variable} ${dmSans.variable} font-body antialiased`}>
         <script
           dangerouslySetInnerHTML={{
             __html: `if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }`,
